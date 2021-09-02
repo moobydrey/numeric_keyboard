@@ -9,7 +9,7 @@ class NumericKeyboard extends StatefulWidget {
   final Color textColor;
 
   /// Display a custom right icon
-  final Widget? rightWidget;
+  final Widget rightWidget;
 
   /// Display a custom left icon
   final Widget? leftWidget;
