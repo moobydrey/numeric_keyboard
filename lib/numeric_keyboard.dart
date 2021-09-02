@@ -14,6 +14,10 @@ class NumericKeyboard extends StatefulWidget {
   /// Display a custom left icon
   final Widget? leftWidget;
 
+  final double fontSize;
+
+  final FontWeight weight;
+
   /// Callback when an item is pressed
   final KeyboardTapCallback onKeyboardTap;
 
@@ -25,6 +29,8 @@ class NumericKeyboard extends StatefulWidget {
       required this.onKeyboardTap,
       this.textColor = Colors.black,
       required this.rightWidget,
+      this.fontSize = 24,
+      this.weight = FontWeight.w400,
       this.leftWidget,
       this.mainAxisAlignment = MainAxisAlignment.spaceEvenly})
       : super(key: key);
@@ -39,9 +45,9 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 32, right: 32, top: 20),
       alignment: Alignment.center,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           ButtonBar(
             alignment: widget.mainAxisAlignment,
@@ -86,17 +92,12 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
         onTap: () {
           widget.onKeyboardTap(value);
         },
-        child: Container(
-          alignment: Alignment.center,
-          width: 50,
-          height: 50,
-          child: Text(
-            value,
-            style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                color: widget.textColor),
-          ),
+        child: Text(
+          value,
+          style: TextStyle(
+              fontSize: widget.fontSize,
+              fontWeight: widget.weight,
+              color: widget.textColor),
         ));
   }
 }
