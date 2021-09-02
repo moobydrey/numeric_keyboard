@@ -9,16 +9,10 @@ class NumericKeyboard extends StatefulWidget {
   final Color textColor;
 
   /// Display a custom right icon
-  final Icon? rightIcon;
-
-  /// Action to trigger when right button is pressed
-  final Function()? rightButtonFn;
+  final Widget? rightWidget;
 
   /// Display a custom left icon
-  final Icon? leftIcon;
-
-  /// Action to trigger when left button is pressed
-  final Function()? leftButtonFn;
+  final Widget? leftWidget;
 
   /// Callback when an item is pressed
   final KeyboardTapCallback onKeyboardTap;
@@ -30,10 +24,8 @@ class NumericKeyboard extends StatefulWidget {
       {Key? key,
       required this.onKeyboardTap,
       this.textColor = Colors.black,
-      this.rightButtonFn,
-      this.rightIcon,
-      this.leftButtonFn,
-      this.leftIcon,
+      required this.rightWidget,
+      this.leftWidget,
       this.mainAxisAlignment = MainAxisAlignment.spaceEvenly})
       : super(key: key);
 
@@ -78,23 +70,9 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
           ButtonBar(
             alignment: widget.mainAxisAlignment,
             children: <Widget>[
-              InkWell(
-                  borderRadius: BorderRadius.circular(45),
-                  onTap: widget.leftButtonFn,
-                  child: Container(
-                      alignment: Alignment.center,
-                      width: 50,
-                      height: 50,
-                      child: widget.leftIcon)),
+              widget.leftWidget ?? _calcButton('00'),
               _calcButton('0'),
-              InkWell(
-                  borderRadius: BorderRadius.circular(45),
-                  onTap: widget.rightButtonFn,
-                  child: Container(
-                      alignment: Alignment.center,
-                      width: 50,
-                      height: 50,
-                      child: widget.rightIcon))
+              widget.rightWidget
             ],
           ),
         ],
